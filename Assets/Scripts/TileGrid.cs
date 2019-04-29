@@ -39,6 +39,8 @@ public class TileGrid : MonoBehaviour
     return neighbors.Select(offset => GetTile(position + offset)).ToList();
   }
 
+  public Tile[] allTiles => tiles.Values.ToArray();
+
   public bool CanBuild(Vector3 position, TileType type) => CanBuild(WorldToHex(position), type);
 
   public bool CanBuild(Vector2Int position, TileType type)

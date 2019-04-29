@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,8 @@ public class UIController : MonoBehaviour
   public GameObject buttonPrefab;
   public GameObject emptyTileMarker;
   public int pointPreview = 0;
+  public CameraControls cameraController;
+  public AudioSource rumble;
 
   Vector3 mousePosition
   {
@@ -43,6 +46,27 @@ public class UIController : MonoBehaviour
 
     SetActiveTile();
     UpdateTileUI();
+    SetCameraShake();
+  }
+
+  void SetCameraShake()
+  {
+    if (cameraController == null)
+    {
+      return;
+    }
+
+    bool isShaking = grid.allTiles.Any(t => t.isBuilding);
+    cameraController.isShaking = isShaking;
+
+    if (isShaking && !rumble.isPlaying)
+    {
+      rumble.Play();
+    }
+    else if (!isShaking && rumble.isPlaying)
+    {
+      rumble.Stop();
+    }
   }
 
   void SetActiveTile()

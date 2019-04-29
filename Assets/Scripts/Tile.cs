@@ -47,7 +47,9 @@ public class Tile : MonoBehaviour
   public bool continuouslyUpdate = false;
 
   public delegate void ScoreEvent(int points);
+  public delegate void BuildEvent(TileType type);
   public static event ScoreEvent OnScore;
+  public static event BuildEvent OnBuild;
 
   float _height = TileTypeData.Get(TileType.Flat).height;
   float scoreTimer = 0f;
@@ -193,14 +195,15 @@ public class Tile : MonoBehaviour
     _height = toHeight;
     UpdateMesh();
     isBuilding = false;
-    OnBuild();
-  }
 
-  void OnBuild()
-  {
     if (OnScore != null)
     {
       OnScore(data.payload);
+    }
+
+    if (OnBuild != null)
+    {
+      OnBuild(to);
     }
 
     UpdateParticleSystem(true);

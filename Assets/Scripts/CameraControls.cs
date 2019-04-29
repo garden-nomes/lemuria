@@ -10,9 +10,11 @@ public class CameraControls : MonoBehaviour
   public float zoom = 5f;
   public float zoomSpeed = 0.1f;
   public float rotateSpeed = 0.5f;
+  public bool isShaking = false;
+  public float shakeAmount = 0.1f;
 
   public Vector3 center = new Vector3(0f, 0f, 0f);
-  [SerializeField] Vector3 offset;
+  Vector3 offset;
   Vector3 dragStartMousePosition;
   float dragStartTime;
   Vector3 previouseMousePosition;
@@ -31,6 +33,12 @@ public class CameraControls : MonoBehaviour
     RotateCamera();
 
     transform.position = center + offset * zoom;
+
+    if (isShaking)
+    {
+      transform.position += Random.insideUnitSphere * shakeAmount * zoom;
+    }
+
     transform.LookAt(center);
   }
 

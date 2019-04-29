@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 7309917585447675555}
   - component: {fileID: 545684524}
   - component: {fileID: 545684525}
-  - component: {fileID: 545684526}
+  - component: {fileID: 1542212031}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -206,6 +206,9 @@ MonoBehaviour:
   buttonPrefab: {fileID: 4856230457013333679, guid: eb09bee0fdad44567843323ef77a6caf,
     type: 3}
   emptyTileMarker: {fileID: 0}
+  pointPreview: 0
+  cameraController: {fileID: 0}
+  rumble: {fileID: 1542212031}
 --- !u!114 &545684525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +224,7 @@ MonoBehaviour:
   points: 1
   grid: {fileID: 0}
   scoreLabel: {fileID: 0}
---- !u!82 &545684526
+--- !u!82 &1542212031
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,9 +234,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c9dd1b73e3b2a4979b769dc04d44a5de, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 17d4fde85690d4c74acb17bd67229c8a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.412
   m_Pitch: 1
   Loop: 1
   Mute: 0
