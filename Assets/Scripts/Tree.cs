@@ -9,6 +9,8 @@ public enum TreeType { Normal, Old }
 
 public class TreeTypeData
 {
+  static readonly float scale = (1f + Mathf.Sqrt(5f)) / 2f;
+
   static public TreeTypeData Get(TreeType type)
   {
     switch (type)
@@ -22,8 +24,8 @@ public class TreeTypeData
       case TreeType.Old:
         return new TreeTypeData
         {
-          height = .5f,
-          radius = .09375f
+          height = .25f * Mathf.Pow(scale, 2f),
+          radius = .0625f * Mathf.Pow(scale, 1f)
         };
       default:
         return Get(TreeType.Normal);
