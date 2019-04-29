@@ -3,21 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TriangleNet.Geometry;
 using TriangleNet.Meshing;
-using UnityEditor;
 using UnityEngine;
 
 public enum TreeType { Normal, Old }
-
-[CustomEditor(typeof(Tree))]
-public class TreeEditor : Editor
-{
-  public override void OnInspectorGUI()
-  {
-    DrawDefaultInspector();
-    var tile = (Tree)target;
-    tile.type = (TreeType)EditorGUILayout.EnumPopup("Type", tile.type);
-  }
-}
 
 public class TreeTypeData
 {

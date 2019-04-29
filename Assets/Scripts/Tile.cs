@@ -3,22 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TriangleNet.Geometry;
 using TriangleNet.Meshing;
-using UnityEditor;
 using UnityEngine;
 
 public enum TileType { Flat, Hills, Mountain, Forest, OldForest }
-
-[CustomEditor(typeof(Tile))]
-public class TileEditor : Editor
-{
-  public override void OnInspectorGUI()
-  {
-    DrawDefaultInspector();
-    var tile = (Tile)target;
-    tile.type = (TileType)EditorGUILayout.EnumPopup("Type", tile.type);
-    tile.isSelected = EditorGUILayout.Toggle("Selected", tile.isSelected);
-  }
-}
 
 [RequireComponent(typeof(MeshFilter), typeof(Renderer))]
 public class Tile : MonoBehaviour

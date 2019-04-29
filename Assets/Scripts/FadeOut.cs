@@ -35,7 +35,6 @@ public class FadeOut : MonoBehaviour
     {
       var opacity = fadeIn.Evaluate(timer);
       SetOpacity(opacity);
-      Debug.Log(opacity);
 
       if (opacity >= 1f)
       {

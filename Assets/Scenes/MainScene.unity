@@ -618,7 +618,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7309917584902265481}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1542212030}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa7398d98c3334752a56a4626ee3ba63, type: 3}
@@ -630,7 +630,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7309917584902265481}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1542212030}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8eb1ec004ea5e4b63a2a6a8999927a3d, type: 3}
@@ -738,7 +738,7 @@ MonoBehaviour:
   zoomSpeed: 0.1
   rotateSpeed: 0.2
   isShaking: 0
-  shakeAmount: 0.015
+  shakeAmount: 0.005
   center: {x: 0, y: 0, z: 0}
 --- !u!224 &747136674 stripped
 RectTransform:
@@ -1179,6 +1179,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167337675}
   m_CullTransparentMesh: 0
+--- !u!1 &1542212030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7309917585447675552, guid: 3d5bfa47eaae04b53af7d69eb699f551,
+    type: 3}
+  m_PrefabInstance: {fileID: 7309917584902265481}
+  m_PrefabAsset: {fileID: 0}
+--- !u!169 &1542212033
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542212030}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.018181818
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!164 &1542212035
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542212030}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: -1000
+  m_RoomHF: 0
+  m_DecayTime: 2.91
+  m_DecayHFRatio: 1.3
+  m_ReflectionsLevel: -602
+  m_ReverbLevel: -302
+  m_ReverbDelay: 0.022
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 9
 --- !u!1001 &1555300024
 PrefabInstance:
   m_ObjectHideFlags: 0
