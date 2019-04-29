@@ -118,8 +118,8 @@ public class Tile : MonoBehaviour
 
     if (typeData.hasTrees && !oldTypeData.hasTrees)
     {
-      SpawnTrees();
-      UpdateTreeType(typeData.treeType);
+      SpawnTrees(newType);
+      UpdateTreeType(newType);
     }
     else if (!typeData.hasTrees && oldTypeData.hasTrees)
     {
@@ -127,7 +127,7 @@ public class Tile : MonoBehaviour
     }
     else if (typeData.treeType != oldTypeData.treeType)
     {
-      UpdateTreeType(typeData.treeType);
+      UpdateTreeType(newType);
     }
 
 
@@ -206,7 +206,7 @@ public class Tile : MonoBehaviour
     UpdateParticleSystem(true);
   }
 
-  void SpawnTrees()
+  void SpawnTrees(TileType type)
   {
     var rect = new Rect(-radius, -radius, radius * 2, radius * 2);
 
@@ -217,7 +217,7 @@ public class Tile : MonoBehaviour
       .Where(p => IsInsideHex(p))
       .Select(v2 => new Vector3(v2.x, 0f, v2.y));
 
-    float transitionTime = data.buildTime;
+    float transitionTime = TileTypeData.Get(type).buildTime;
 
     foreach (var point in points)
     {
@@ -235,12 +235,15 @@ public class Tile : MonoBehaviour
     }
   }
 
-  void UpdateTreeType(TreeType newType)
+  void UpdateTreeType(TileType type)
   {
     var trees = GetComponentsInChildren<Tree>();
+    var treeType = TileTypeData.Get(type).treeType;
+
     foreach (var tree in trees)
     {
-      tree.type = newType;
+      tree.growingAnimationLength = TileTypeData.Get(type).buildTime;
+      tree.type = treeType;
     }
   }
 

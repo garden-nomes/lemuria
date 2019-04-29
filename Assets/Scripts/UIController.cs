@@ -16,6 +16,7 @@ public class UIController : MonoBehaviour
   public float tileUIHeight = 0.25f;
   public GameObject buttonPrefab;
   public GameObject emptyTileMarker;
+  public int pointPreview = 0;
 
   Vector3 mousePosition
   {
@@ -57,7 +58,7 @@ public class UIController : MonoBehaviour
       RefreshButtons();
     }
 
-    if (activeTile == null)
+    if (activeTile == null && grid.CanBuild(mousePosition, TileType.Flat))
     {
       emptyTileMarker.SetActive(true);
       emptyTileMarker.transform.position = grid.HexToWorld(grid.WorldToHex(mousePosition));
@@ -82,6 +83,11 @@ public class UIController : MonoBehaviour
       var position = grid.HexToWorld(grid.WorldToHex(mousePosition));
       tileUICanvas.transform.position = position + Vector3.up * height;
     }
+
+    foreach (var button in tileUICanvas.GetComponentsInChildren<ButtonController>())
+    {
+      button.hexCoords = grid.WorldToHex(mousePosition);
+    }
   }
 
   void SetTile(TileType type)
@@ -105,12 +111,18 @@ public class UIController : MonoBehaviour
     }
 
     RefreshButtons();
+    pointPreview = 0;
   }
 
   void RefreshButtons()
   {
     RemoveButtons();
     AttachButtons();
+  }
+
+  void SetPreview(TileType? type)
+  {
+    pointPreview = type == null ? 0 : TileTypeData.Get(type.Value).cost;
   }
 
   void AttachButtons()
@@ -121,11 +133,6 @@ public class UIController : MonoBehaviour
 
     foreach (var type in availableTileTypes)
     {
-      if (!grid.CanBuild(mousePosition, type))
-      {
-        continue;
-      }
-
       var instance = Instantiate(
         buttonPrefab,
         tileUICanvas.transform.position,
@@ -135,6 +142,8 @@ public class UIController : MonoBehaviour
       var buttonController = instance.GetComponent<ButtonController>();
       buttonController.hexCoords = grid.WorldToHex(mousePosition);
       buttonController.type = type;
+      buttonController.onMouseEnter.AddListener(() => SetPreview(type));
+      buttonController.onMouseExit.AddListener(() => SetPreview(null));
 
       var button = instance.GetComponent<Button>();
       button.onClick.AddListener(() => SetTile(type));

@@ -11,7 +11,7 @@ public class CameraControls : MonoBehaviour
   public float zoomSpeed = 0.1f;
   public float rotateSpeed = 0.5f;
 
-  Vector3 center = new Vector3(0f, 0f, 0f);
+  public Vector3 center = new Vector3(0f, 0f, 0f);
   [SerializeField] Vector3 offset;
   Vector3 dragStartMousePosition;
   float dragStartTime;

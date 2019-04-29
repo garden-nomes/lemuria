@@ -108,7 +108,7 @@ MonoBehaviour:
   isBuilding: 0
   snowLine: 1
   cliffLine: 0.2
-  continuouslyUpdate: 1
+  continuouslyUpdate: 0
 --- !u!199 &1706246779166964583
 ParticleSystemRenderer:
   serializedVersion: 6
